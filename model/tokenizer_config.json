@@ -1,0 +1,16 @@
+{
+  "cls_token": "[CLS]",
+  "do_basic_tokenize": true,
+  "do_lower_case": false,
+  "mask_token": "[MASK]",
+  "max_len": 512,
+  "name_or_path": "armheb/DNA_bert_3",
+  "never_split": null,
+  "pad_token": "[PAD]",
+  "sep_token": "[SEP]",
+  "special_tokens_map_file": "/home/lixc/.cache/huggingface/transformers/370b400d6fc7ef6a8f6c09f60827737f1a768d8994ff4ea0f2870e732f0f1948.dd8bd9bfd3664b530ea4e645105f557769387b3da9f79bdb55ed556bdd80611d",
+  "strip_accents": null,
+  "tokenize_chinese_chars": true,
+  "tokenizer_class": "BertTokenizer",
+  "unk_token": "[UNK]"
+}
