@@ -2,6 +2,8 @@
 <h1>🧬 Reformer</h1>
 Driving interpretation of the regulation machanisms underlying RNA processing
 </div>
+
+<div align="left">
 ## 📋 About <a name="about"></a>
 Reformer (RNA-protein binding modeling with transformer) is a deep learning model designed for predicting protein-RNA binding affinity. The repository contains the trained model, training script, and the scripts for characterizing protein-RNA binding affinity and prioritizing mutations affecting RNA regulation.
 
@@ -144,3 +146,4 @@ calc_mutation_effect(ref_coverage, mut_coverage)
 
 ## 🖊️ Citation <a name="citation"></a>
 Unpublished
+</div>
