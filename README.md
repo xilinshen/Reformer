@@ -4,31 +4,35 @@ Driving interpretation of the regulation machanisms underlying RNA processing
 </div>
 
 <div align="left">
-## 📋 About <a name="about"></a>
+<h2> 📋 About <a name="about"></a></h2>
 Reformer (RNA-protein binding modeling with transformer) is a deep learning model designed for predicting protein-RNA binding affinity. The repository contains the trained model, training script, and the scripts for characterizing protein-RNA binding affinity and prioritizing mutations affecting RNA regulation.
 
 For instructions on training models for new organisms or using the pre-trained model, refer to the installation guide.
 
-## 🔗 Methodology <a name="methodology"></a>
+<h2> 🔗 Methodology <a name="methodology"></a></h2>
 Reformer is a deep learning model that quantitatively characterizes RNA-protein binding affinity at single-base resolution using cDNA sequences. Reformer was motivated by the bidirectional encoder model. We developed Reformer based on a dataset comprising 225 eCLIP-seq experiments encompassing 155 RNA binding proteins (RBPs) across 3 cell lines. The individual peaks were combined into 511 bp sequences and tokenized into 3-mer representations. The corresponding eCLIP-seq target was incorporated at the sequence beginning. The transformer layer computed a weighted sum of representations for all sequence bases, enabling Reformer to refine predictions by incorporating information from relevant regions. Employing a regression layer for coverage prediction, Reformer outputs binding affinities for all bases. The model was trained to minimize the discrepancy between the predicted and actual binding affinity.
 
-![flowchart](figure/flowchart.png)
+<div align="center">
+<img src="figure/flowchart.png" width="400px">
+</div>
 
-## 📖 Installation <a name="Installation"></a>
+<h2> 📖 Installation <a name="Installation"></a></h2>
 To use the Reformer package, clone the repository:
+
 ```bash
 git clone https://github.com/xilinshen/Reformer
 ```
-
 Required packages can be installed using:
+
 ```bash
 pip install torch transformers h5py seaborn kipoiseq biopython pysam
 ```
 
-## 🌸 De novo training <a name="De novo training"></a>
+<h2> 🌸 De novo training <a name="De novo training"></a></h2>
 For de novo training, follow these steps:
-1. Create an output directory.
+1. Create an output directory;<br>
 2. Run the training script:
+
 ```bash
 python train.py \
         --outdir <output_directory> \
@@ -41,25 +45,28 @@ python train.py \
 
 Main function arguments:
 ```bash
---outdir     the output directory
---h5file     input file in h5file format (reference: "./data/example.h5") 
---lr       initial learning rate
---batch-size batch size for training
---epochs    number of training epochs
---device    list of GPU index for training
+--outdir       the output directory
+--h5file       input file in h5file format (reference: "./data/example.h5") 
+--lr           initial learning rate
+--batch-size   batch size for training
+--epochs       number of training epochs
+--device       list of GPU index for training
 ```
-For a complete list of options, run python train.py -h.
+For a complete list of options, run `python train.py -h`.
 
-## ✨ Predicting protein-RNA binding affinity <a name="Predicting protein-RNA binding affinity"></a>
+<h2> ✨ Predicting protein-RNA binding affinity <a name="Predicting protein-RNA binding affinity"></a></h2> 
 To predict protein-RNA binding affinity, follow these steps:
-1. Download the pretrained model from xx.
+
+1. Download the pretrained model from xx;
+
 2. Prepare an h5file format input (reference: "./data/test.h5"):
  - `prefix`: RBP target and cell line name
  - `code_prefix`: coded target name (refer to "./data/prefix_codes.csv")
  - `seq`: sequence for prediction
  - `strand`: strand for prediction
+</br>
+<b> Example usage: </b>
 
-** Example usage: **
 ```bash
 import pandas as pd
 import numpy as np
@@ -97,13 +104,15 @@ for idx in np.random.choice(np.arange(len(dataset)),10): # we randomly chose 10 
     
 ```
 
-## 🔍 Mutation effect prediction <a name="Mutation effect prediction"></a>
+<h2> 🔍 Mutation effect prediction <a name="Mutation effect prediction"></a></h2> 
 To predict mutation effects on binding affinity, perform the following steps:
-1. Specify mutation sites, wild-type and mutanted bases
-2. we generate wild-type sequence `ref_seq` and mutant sequence `mut_seq` centered on the mutation site
-3. Specify the RBP to be predicted and the cell line (reference to `./data/prefix_codes.csv`)
+1. Specify mutation sites, wild-type and mutanted bases;
+2. we generate wild-type sequence `ref_seq` and mutant sequence `mut_seq` centered on the mutation site;
+3. Specify the RBP to be predicted and the cell line (reference to `./data/prefix_codes.csv`).
 
-** Example usage: **
+</br>
+
+<b> Example usage: </b>
 
 ```bash
 import pandas as pd
@@ -136,7 +145,7 @@ mut_coverage = model(mut_input.to(model.model.device))
 ref_coverage = ref_coverage.detach().cpu().numpy()
 mut_coverage = mut_coverage.detach().cpu().numpy()
 ```
-The predict function returns to `ref_coverage` and `mut_coverage`. The mutation effect was evaluate as the changes in predicted binding affinity before and after mutation:
+The predict function returns to `ref_coverage` and `mut_coverage`. The mutation effect was evaluate as the changes in predicted binding affinity between before and after mutation:
 ```bash
 # mutation effect
 plot_tracks_comparision({"before mutation":ref_coverage, "after mutation":mut_coverage})
@@ -144,6 +153,6 @@ plot_tracks_comparision({"before mutation":ref_coverage, "after mutation":mut_co
 calc_mutation_effect(ref_coverage, mut_coverage)
 ```
 
-## 🖊️ Citation <a name="citation"></a>
+<h2> 🖊️ Citation <a name="citation"></a></h2> 
 Unpublished
 </div>
