@@ -5,9 +5,9 @@ Driving interpretation of the regulation machanisms underlying RNA processing
 
 <div align="left">
 <h2> 📋 About <a name="about"></a></h2>
-Reformer (RNA-protein binding modeling with transformer) is a deep learning model designed for predicting protein-RNA binding affinity. The repository contains the trained model, training script, and the scripts for characterizing protein-RNA binding affinity and prioritizing mutations affecting RNA regulation.
+<b>Reformer</b> (RNA-protein binding modeling with transformer) is a deep learning model designed for predicting protein-RNA binding affinity. The repository contains the trained model, training script, and the scripts for characterizing protein-RNA binding affinity and prioritizing mutations affecting RNA regulation.
 
-For instructions on training models for new organisms or using the pre-trained model, refer to the installation guide.
+For using the pre-trained model or training models for new RBP targets and cell lines, refer to the installation guide.
 
 <h2> 🔗 Methodology <a name="methodology"></a></h2>
 Reformer is a deep learning model that quantitatively characterizes RNA-protein binding affinity at single-base resolution using cDNA sequences. Reformer was motivated by the bidirectional encoder model. We developed Reformer based on a dataset comprising 225 eCLIP-seq experiments encompassing 155 RNA binding proteins (RBPs) across 3 cell lines. The individual peaks were combined into 511 bp sequences and tokenized into 3-mer representations. The corresponding eCLIP-seq target was incorporated at the sequence beginning. The transformer layer computed a weighted sum of representations for all sequence bases, enabling Reformer to refine predictions by incorporating information from relevant regions. Employing a regression layer for coverage prediction, Reformer outputs binding affinities for all bases. The model was trained to minimize the discrepancy between the predicted and actual binding affinity.
@@ -30,6 +30,7 @@ pip install torch transformers h5py seaborn kipoiseq biopython pysam
 
 <h2> 🌸 De novo training <a name="De novo training"></a></h2>
 For de novo training, follow these steps:
+</br>
 1. Create an output directory;<br>
 2. Run the training script:
 
@@ -67,7 +68,7 @@ To predict protein-RNA binding affinity, follow these steps:
 </br>
 <b> Example usage: </b>
 
-```bash
+```python
 import pandas as pd
 import numpy as np
 import h5py
@@ -106,15 +107,14 @@ for idx in np.random.choice(np.arange(len(dataset)),10): # we randomly chose 10 
 
 <h2> 🔍 Mutation effect prediction <a name="Mutation effect prediction"></a></h2> 
 To predict mutation effects on binding affinity, perform the following steps:
-1. Specify mutation sites, wild-type and mutanted bases;
-2. we generate wild-type sequence `ref_seq` and mutant sequence `mut_seq` centered on the mutation site;
-3. Specify the RBP to be predicted and the cell line (reference to `./data/prefix_codes.csv`).
-
-</br>
+</br>1. Specify mutation sites, wild-type and mutanted bases;
+</br>2. we generate wild-type sequence `ref_seq` and mutant sequence `mut_seq` centered on the mutation site;
+</br>3. Specify the RBP to be predicted and the cell line (reference to `./data/prefix_codes.csv`).
 
 <b> Example usage: </b>
+</br>
 
-```bash
+```python
 import pandas as pd
 import numpy as np
 import tqdm
