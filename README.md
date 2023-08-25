@@ -25,7 +25,13 @@ git clone https://github.com/xilinshen/Reformer
 Required packages can be installed using:
 
 ```bash
-pip install torch transformers h5py seaborn kipoiseq biopython pysam
+pip install torch==2.0.1
+pip install transformers==4.32.0
+pip install h5py==3.9.0
+pip install seaborn==0.12.2
+pip install kipoiseq==0.7.1
+pip install biopython==1.81
+pip install pysam==0.21.0
 ```
 
 <h2> 🌸 De novo training <a name="De novo training"></a></h2>
@@ -61,10 +67,10 @@ To predict protein-RNA binding affinity, follow these steps:
 1. Download the pretrained model from xx;
 
 2. Prepare your sequence in h5file format for prediction (reference: "./data/test.h5"):
-         - `prefix`: RBP target and cell line name
-         - `code_prefix`: coded target name (refer to "./data/prefix_codes.csv")
-         - `seq`: sequence for prediction
-         - `strand`: strand for prediction
+   -   `prefix`: RBP target and cell line name
+   -   `code_prefix`: coded target name (refer to "./data/prefix_codes.csv")
+   -   `seq`: sequence for prediction
+   -   `strand`: strand for prediction
 </br>
 <b> Example usage: </b>
 
@@ -106,11 +112,11 @@ for idx in np.random.choice(np.arange(len(dataset)),10): # we randomly chose 10 
 ```
 
 <h2> 🔍 Mutation effect prediction <a name="Mutation effect prediction"></a></h2> 
-To predict mutation effects on binding affinity, perform the following steps:
-</br>1. Specify chromosome, mutation sites, wild-type and mutanted bases, eg. `chrX:133985274:C>T`
-</br>2. we generate wild-type sequence `ref_seq` and mutant sequence `mut_seq` centered on the mutation site;
-</br>3. Specify the RBP to be predicted and the cell line (reference to `./data/prefix_codes.csv`).
-
+To predict mutation effects on binding affinity, perform the following steps:</br>
+</br>1. Specify the RBP and cell line name (reference to `./data/prefix_codes.csv` );</br>
+</br>2. Specify chromosome, mutation sites, wild-type and mutanted bases, eg. `chrX:133985274:C>T`;</br>
+</br>3. We generate wild-type sequence `ref_seq` and mutant sequence `mut_seq` centered on the mutation site.</br>
+</br>
 <b> Example usage: </b>
 </br>
 
