@@ -151,7 +151,7 @@ mut_coverage = model(mut_input.to(model.model.device))
 ref_coverage = ref_coverage.detach().cpu().numpy()
 mut_coverage = mut_coverage.detach().cpu().numpy()
 ```
-The predict function returns to `ref_coverage` and `mut_coverage`. The mutation effect was evaluate as the changes in predicted binding affinity between before and after mutation:
+The predict function returns to `ref_coverage` and `mut_coverage`. The mutation effect is evaluate as the changes in predicted binding affinity between before and after mutation:
 ```bash
 # mutation effect
 plot_tracks_comparision({"before mutation":ref_coverage, "after mutation":mut_coverage})
