@@ -87,7 +87,7 @@ np.random.seed(42)
 
 # load model
 tokenizer = T.BertTokenizer.from_pretrained("./model/") 
-model = load_model(tokenizer, "./model/model.bin") # xx
+model = load_model(tokenizer, "sxl/Reformer") # xx
 
 # load eCLIP coverage
 data = h5py.File('./data/test.h5')
@@ -134,7 +134,7 @@ from utils import *
 
 fasta = pysam.FastaFile("./data/GRCh38.p5.genome.fa")
 tokenizer = T.BertTokenizer.from_pretrained("./model/")
-model = load_model(tokenizer, "./model/model.bin")
+model = load_model(tokenizer, "sxl/Reformer")
 
 prefix = "PRPF8_HepG2"
 snp = "chrX:133985274:C>T"
