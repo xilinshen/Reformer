@@ -17,10 +17,10 @@ Reformer is a deep learning model that quantitatively characterizes RNA-protein 
 </div>
 
 <h2> 📖 Installation <a name="Installation"></a></h2>
-To use the Reformer package, clone the repository:
+To use the Reformer package, clone the hugging face repository:
 
 ```bash
-git clone https://github.com/xilinshen/Reformer
+sxl/Reformer
 ```
 Required packages can be installed using:
 
@@ -53,7 +53,7 @@ python train.py \
 Main function arguments:
 ```bash
 --outdir       the output directory
---h5file       input file in h5file format (reference: "./data/example.h5") 
+--h5file       input file in h5file format (example: "./data/example.h5") 
 --lr           initial learning rate
 --batch-size   batch size for training
 --epochs       number of training epochs
@@ -66,9 +66,9 @@ To predict protein-RNA binding affinity, follow these steps:
 
 1. Download the pretrained model from xx;
 
-2. Prepare your sequence in h5file format for prediction (reference: "./data/test.h5"):
+2. Prepare your sequence in h5file format for prediction (example: "./data/test.h5"):
    -   `prefix`: RBP target and cell line name
-   -   `code_prefix`: coded target name (refer to "./data/prefix_codes.csv")
+   -   `code_prefix`: coded target name (example: "./data/prefix_codes.csv")
    -   `seq`: sequence for prediction
    -   `strand`: strand for prediction
 </br>
@@ -113,7 +113,7 @@ for idx in np.random.choice(np.arange(len(dataset)),10): # we randomly chose 10 
 
 <h2> 🔍 Mutation effect prediction <a name="Mutation effect prediction"></a></h2> 
 To predict mutation effects on binding affinity, perform the following steps:</br>
-</br>1. Specify the RBP and cell line name (reference to `./data/prefix_codes.csv` );</br>
+</br>1. Specify the RBP and cell line name (example: `./data/prefix_codes.csv` );</br>
 </br>2. Specify chromosome, mutation sites, wild-type and mutanted bases, eg. `chrX:133985274:C>T`;</br>
 </br>3. We generate wild-type sequence `ref_seq` and mutant sequence `mut_seq` centered on the mutation site.</br>
 </br>
