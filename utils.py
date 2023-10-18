@@ -13,10 +13,10 @@ import copy
 import pandas as pd
 
 def load_model(tokenizer, model_path):
-    model = Bert4Coverage(tokenizer)
+    model = Bert4Coverage(tokenizer,model_path = model_path)
     
-    state_dict = torch.load(model_path, map_location  = "cpu")
-    model.load_state_dict(state_dict, strict = False)
+    # state_dict = torch.load(model_path, map_location  = "cpu")
+    # model.load_state_dict(state_dict, strict = False)
     if torch.cuda.is_available():
         model.cuda()
     model.eval()
@@ -200,13 +200,16 @@ class SequenceDataset4train(torch.utils.data.Dataset):
         return inputs['input_ids'], torch.as_tensor(experiment_coverage, dtype=torch.float32)
 
 class Bert4Coverage(nn.Module):
-    def __init__(self,tokenizer):
+    def __init__(self,tokenizer, model_path = None):
         super(Bert4Coverage, self).__init__()
-        config = T.BertConfig('./model/config.json')
-        config.vocab_size = np.max([len(tokenizer),512])
-        
-        self.model = T.BertModel(config)
-        self.model.resize_token_embeddings(len(tokenizer))
+        if model_path == None:
+            config = T.BertConfig('./model/config.json')
+            config.vocab_size = np.max([len(tokenizer),512])
+            self.model = T.BertModel(config)
+            self.model.resize_token_embeddings(len(tokenizer))
+        else:
+            self.model = T.BertModel.from_pretrained(model_path)
+            
         hidden_size = self.model.config.hidden_size #768
         self.dropout = nn.Dropout(0.2)
         self.lin = nn.Linear(hidden_size, 1, bias=False)
