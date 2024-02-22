@@ -87,7 +87,7 @@ np.random.seed(42)
 
 # load model
 tokenizer = T.BertTokenizer.from_pretrained("./model/") 
-model = load_model(tokenizer, "sxl/Reformer") # xx
+model = load_model(tokenizer, "./model/") # xx
 
 # load eCLIP coverage
 data = h5py.File('./data/test.h5')
