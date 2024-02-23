@@ -15,8 +15,8 @@ import pandas as pd
 def load_model(tokenizer, model_path):
     model = Bert4Coverage(tokenizer,model_path = model_path)
     
-    # state_dict = torch.load(model_path, map_location  = "cpu")
-    # model.load_state_dict(state_dict, strict = False)
+    state_dict = torch.load(model_path, map_location  = "cpu")
+    model.load_state_dict(state_dict, strict = False)
     if torch.cuda.is_available():
         model.cuda()
     model.eval()
