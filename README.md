@@ -19,9 +19,10 @@ Developed based on a dataset comprising 225 eCLIP-seq experiments covering 155 R
 </div>
 
 <h2> 📖 Installation <a name="Installation"></a></h2>
-To use the Reformer package, clone the hugging face repository:
+To use the pre-trained model, clone the hugging face repository:
 
 ```bash
+sxl/Reformer-BC
 sxl/Reformer
 ```
 Required packages can be installed using:
@@ -43,7 +44,17 @@ For de novo training, follow these steps:
 2. Run the training script:
 
 ```bash
-python train.py \
+## train Reformer-BC
+python train_reformer_bc.py \
+        --outdir <output_directory> \
+        --h5file <training_data> \
+        --lr 2e-05 \
+        --batch-size 32 \
+        --epochs 30 \
+        --device 0 1
+
+## train Reformer
+python train_reformer.py \
         --outdir <output_directory> \
         --h5file <training_data> \
         --lr 2e-05 \
