@@ -1,4 +1,4 @@
-outdir=./save_model/
+outdir=./save_reformer/
 mkdir ${outdir}
 
 python train_reformer.py \
