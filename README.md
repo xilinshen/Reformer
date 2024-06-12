@@ -5,12 +5,14 @@ Driving interpretation of the regulation machanisms underlying RNA processing
 
 <div align="left">
 <h2> 📋 About <a name="about"></a></h2>
-<b>Reformer</b> (RNA-protein binding modeling with transformer) is a deep learning model designed for predicting protein-RNA binding affinity. The repository contains the trained model, training script, and the scripts for characterizing protein-RNA binding affinity and prioritizing mutations affecting RNA regulation.
+Here, we introduce a deep learning pipeline to predict protein-RNA binding affinity purely from sequence data. This pipeline consists of <b>Reformer-BC (RNA-protein binding modeling with transformer - binrary classification)</b> to distinguish binding sites from non-binding sites, followed by <b>Reformer</b>, which predicts binding affinity at single-base resolution. The repository contains the trained model, training script, and the scripts for characterizing protein-RNA binding affinity and prioritizing mutations affecting RNA regulation.
 
 For using the pre-trained model or training models for new RBP targets and cell lines, refer to the installation guide.
 
 <h2> 🔗 Methodology <a name="methodology"></a></h2>
-Reformer is a deep learning model that quantitatively characterizes RNA-protein binding affinity at single-base resolution using cDNA sequences. Reformer is motivated by the bidirectional encoder model. We developed Reformer based on a dataset comprising 225 eCLIP-seq experiments encompassing 155 RNA binding proteins (RBPs) across 3 cell lines. The individual peaks were combined into 511 bp sequences and tokenized into 3-mer representations. The corresponding eCLIP-seq target is incorporated at the sequence beginning. The transformer layer computed a weighted sum of representations for all sequence bases, enabling Reformer to refine predictions by incorporating information from relevant regions. Employing a regression layer for coverage prediction, Reformer outputs binding affinities for all bases. The model is trained to minimize the discrepancy between the predicted and actual binding affinity.
+Reformer-BC and Reformer form a deep learning pipline that quantitatively characterizes RNA-protein binding affinity at single-base resolution using cDNA sequences. The journey begins with Reformer-BC, which distinguishes binding sites from non-binding sites, setting the stage for Reformer to refine predictions by incorporating information from relevant regions. 
+
+Developed based on a dataset comprising 225 eCLIP-seq experiments covering 155 RNA binding proteins (RBPs) across 3 cell lines, this approach achieved high prediction accuracy. Reformer excels in identifying protein binding motifs that traditional eCLIP-seq experiments might miss, providing a more nuanced understanding of RNA processing functions.
 
 <div align="center">
 <img src="figure/flowchart.png" width="400px">
