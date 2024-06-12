@@ -1,7 +1,7 @@
 outdir=./save_model/
 mkdir ${outdir}
 
-python train.py \
+python train_reformer.py \
 	--outdir ${outdir} \
 	--h5file ./data/example.h5 \
 	--lr 2e-05 \
