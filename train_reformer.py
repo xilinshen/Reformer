@@ -19,7 +19,7 @@ import torch.utils.data
 import transformers as T
 from transformers import get_scheduler
 
-parser = argparse.ArgumentParser(description='PyTorch ImageNet Training')
+parser = argparse.ArgumentParser(description='PyTorch Reformer Training')
 parser.add_argument('-j',
                     '--workers',
                     default=1,
@@ -27,7 +27,7 @@ parser.add_argument('-j',
                     metavar='N',
                     help='number of data loading workers (default: 1)')
 parser.add_argument('--epochs',
-                    default=90,
+                    default=30,
                     type=int,
                     metavar='N',
                     help='number of total epochs to run')
@@ -79,7 +79,7 @@ parser.add_argument("--lr_scheduler_type", type=str,
 parser.add_argument('--outdir', help='output directory')
 parser.add_argument('--h5file', help='input h5file')
 parser.add_argument('--device', nargs='+', help='a list of gpu')
-
+parser.add_argument('--resume', help='resume from checkpoint')
 
 def main():
     args = parser.parse_args()
@@ -100,7 +100,6 @@ def main():
 
 
 def main_worker(gpus, args):
-
     tokenizer = T.BertTokenizer.from_pretrained("./model/")
     
     df = h5py.File(args.h5file)
@@ -113,6 +112,10 @@ def main_worker(gpus, args):
     print(model.model.config)
     print(model)
 
+    if args.resume:
+        checkpoint = torch.load(args.resume, map_location = 'cpu')
+        model.load_state_dict(checkpoint)
+  
     model.cuda()
     # When using a single GPU per process and per
     # DistributedDataParallel, we need to divide the batch size
@@ -132,7 +135,6 @@ def main_worker(gpus, args):
     ]
     optimizer = AdamW(optimizer_grouped_parameters, lr=args.lr, betas=(0.9, 0.95))
 
-    #criterion = nn.CrossEntropyLoss()
     criterion = nn.L1Loss()
 
     cudnn.benchmark = True
@@ -166,8 +168,6 @@ def main_worker(gpus, args):
         return
 
     for epoch in range(args.start_epoch, args.epochs):
-        
-
         # train for one epoch
         train(train_loader, model, criterion, lr_scheduler, optimizer, epoch, args)
 
