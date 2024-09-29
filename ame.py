@@ -10,9 +10,9 @@ import sys
 ### eclip motif
 def write_attract_motif(need_id,path=None):
     if path == None:
-        path = "./Data/tmp.txt"
+        path = "./data/tmp.txt"
         
-    motif = open("./Data/pwm_memeformat.txt",'r').readlines()
+    motif = open("./data/pwm_memeformat.txt",'r').readlines()
     write_seq = [i.strip() for i in motif[:9]]
     write = False
     for i in motif:
@@ -45,7 +45,7 @@ def load_eclip_data(path):
     seq = np.stack([[a for a in i] for i in seq])
     return seq, strand
 
-all_prefix_df = pd.read_csv("./Data/ATtRACT_db.csv",index_col=0)
+all_prefix_df = pd.read_csv("./data/ATtRACT_db.csv",index_col=0)
 
 mer=10 ## filter out motifs longer than 10 mer.
 
@@ -59,16 +59,16 @@ def main(prefix, layer, head):
     if not os.path.exists(f"./Result/{prefix}/ame/"):
         os.mkdir(f"./Result/{prefix}/ame/")
 
-    seq, strand = load_eclip_data('./Data/{}.h5ad'.format(prefix))
+    seq, strand = load_eclip_data('./data/{}.h5ad'.format(prefix))
     
     # save attract meme for the gene
     gene = prefix.split("_")[0]
     need_id = list(set(all_prefix_df[all_prefix_df.index == gene].Matrix_id))
-    meme_file = f"./Data/{prefix}_attract.txt"
+    meme_file = f"./data/{prefix}_attract.txt"
     write_attract_motif(need_id,meme_file)
 
     # pos seq vs neg seq
-    data = np.load("./Data/{}_attention.npz".format(prefix))
+    data = np.load("./data/{}_attention.npz".format(prefix))
     attn = data['attn']
 #     latent = data['x']
 
@@ -154,7 +154,7 @@ if __name__ == "__main__":
     layer = int(sys.argv[2])
     head = int(sys.argv[3])
 
-    if not os.path.exists(f'./Data/{prefix}_attention.npz'):
+    if not os.path.exists(f'./data/{prefix}_attention.npz'):
         shell = f"python attention_extractor.sh {prefix}" 
         r = subprocess.getoutput(shell)
         print(r)
