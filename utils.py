@@ -8,7 +8,6 @@ import transformers as T
 import Bio.Seq
 import numpy as np
 import h5py
-import pysam 
 import copy
 import pandas as pd
 
