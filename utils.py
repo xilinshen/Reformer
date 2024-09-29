@@ -214,8 +214,8 @@ class Bert4Coverage(nn.Module):
         self.dropout = nn.Dropout(0.2)
         self.lin = nn.Linear(hidden_size, 1, bias=False)
 
-    def forward(self, input_ids):
-        hidden = self.model(input_ids=input_ids.squeeze(1)).last_hidden_state[:,2:-1,:]
+    def forward(self, input_ids, output_attentions = False):
+        hidden = self.model(input_ids=input_ids.squeeze(1), output_attentions=output_attentions).last_hidden_state[:,2:-1,:]
         hidden = self.dropout(hidden)
         score = self.lin(hidden).squeeze()
         return score.relu()
