@@ -129,16 +129,17 @@ Motif enrichment is performed on the high attention regions identified by Reform
 </br>
 <b> Example usage: </b>
 </br>
-```bash
-    ## example: U2AF2 in HepG2
-    ## extract attention scores of peak regions
-    bash attention_extractor.sh U2AF2_HepG2
+<pre><code>
+#!/bin/bash
+## example: U2AF2 in HepG2
+## extract attention scores of peak regions
+bash attention_extractor.sh U2AF2_HepG2
     
-    ## motif enrichment in high attention regions of layer1 head2
-    mkdir Result
-    python ame.py U2AF2_HepG2 1 2
-```
-
+## motif enrichment in high attention regions of layer1 head2
+mkdir Result
+python ame.py U2AF2_HepG2 1 2
+</code></pre>
+ 
 <h2> 🔍 Mutation effect prediction <a name="Mutation effect prediction"></a></h2> 
 To predict mutation effects on binding affinity, perform the following steps:</br>
 </br>1. Specify the RBP and cell line name (example: `./data/prefix_codes.csv` );</br>
