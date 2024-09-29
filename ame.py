@@ -45,7 +45,6 @@ def load_eclip_data(path):
     seq = np.stack([[a for a in i] for i in seq])
     return seq, strand
 
-#all_prefix_df = pd.read_csv("/home/shenxilin/eCLIP/Data/motif/motif_database/attract/ATtRACT_db.csv",index_col=0)
 all_prefix_df = pd.read_csv("./Data/ATtRACT_db.csv",index_col=0)
 
 mer=10 ## filter out motifs longer than 10 mer.
@@ -60,16 +59,6 @@ def main(prefix, layer, head):
     if not os.path.exists(f"./Result/{prefix}/ame/"):
         os.mkdir(f"./Result/{prefix}/ame/")
 
-#     if not os.path.exists(f"/home/shenxilin/eCLIP/Training_record/regression_bert_alldata_v1/motif/ame_attract_cutoff99_apc_v3/{prefix}/"):
-#         os.mkdir(f"/home/shenxilin/eCLIP/Training_record/regression_bert_alldata_v1/motif/ame_attract_cutoff99_apc_v3/{prefix}/")
-
-#     if not os.path.exists(f"/home/shenxilin/eCLIP/Training_record/regression_bert_alldata_v1/motif/ame_attract_cutoff99_apc_v3/{prefix}/seq/"):
-#         os.mkdir(f"/home/shenxilin/eCLIP/Training_record/regression_bert_alldata_v1/motif/ame_attract_cutoff99_apc_v3/{prefix}/seq/")
-
-#     if not os.path.exists(f"/home/shenxilin/eCLIP/Training_record/regression_bert_alldata_v1/motif/ame_attract_cutoff99_apc_v3/{prefix}/ame/"):
-#         os.mkdir(f"/home/shenxilin/eCLIP/Training_record/regression_bert_alldata_v1/motif/ame_attract_cutoff99_apc_v3/{prefix}/ame/")
-
-    # f = h5py.File('/home/shenxilin/eCLIP/Data/peak_score/len512_score512/{}.h5'.format(prefix), 'r') # make data
     seq, strand = load_eclip_data('./Data/{}.h5ad'.format(prefix))
     
     # save attract meme for the gene
