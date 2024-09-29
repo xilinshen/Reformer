@@ -124,8 +124,10 @@ for idx in np.random.choice(np.arange(len(dataset)),10): # we randomly chose 10 
     
 ```
 
-<h2> 🔍 Motif enrichment with high attention region <a name="Motif enrichment with high attention region"></a></h2>
+<h2> ⭐ Motif enrichment with high attention region <a name="Motif enrichment with high attention region"></a></h2>
 Motif enrichment is performed on the high attention regions identified by Reformer. This method uncovers significant RNA-binding motifs that may be missed by traditional approaches, providing insights into RNA regulation and protein interactions.</br>
+</br>
+<b> Example usage: </b>
 </br>
 ```bash
     ## example: U2AF2 in HepG2
@@ -135,7 +137,7 @@ Motif enrichment is performed on the high attention regions identified by Reform
     ## motif enrichment in high attention regions of layer1 head2
     mkdir Result
     python ame.py U2AF2_HepG2 1 2
-```    
+```
 
 <h2> 🔍 Mutation effect prediction <a name="Mutation effect prediction"></a></h2> 
 To predict mutation effects on binding affinity, perform the following steps:</br>
