@@ -61,7 +61,6 @@ def main(args):
     model.eval()
     
     val_dataset = SequenceDataset(args.file_path, fast_tokenizer)        
-    # val_dataset = SequenceDataset('/home/shenxilin/eCLIP/Data/peak_score/len512_score512/{}.h5'.format(args.prefix), fast_tokenizer,mode="test")        
     val_loader = DataLoader(
         val_dataset,
         batch_size=4,
