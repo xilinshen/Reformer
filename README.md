@@ -134,7 +134,6 @@ Motif enrichment is performed on the high attention regions identified by Reform
 ## example: U2AF2 in HepG2
 ## extract attention scores of peak regions
 bash attention_extractor.sh U2AF2_HepG2
-    
 ## motif enrichment in high attention regions of layer1 head2
 mkdir Result
 python ame.py U2AF2_HepG2 1 2
