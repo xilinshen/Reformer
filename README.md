@@ -73,7 +73,7 @@ Main function arguments:
 --device       list of GPU index for training
 ```
 For a complete list of options, run `python train.py -h`.
-
+The full training data can be available at Zendo [doi:10.5281/zenodo.14021440]
 <h2> ✨ Predicting protein-RNA binding affinity <a name="Predicting protein-RNA binding affinity"></a></h2> 
 To predict protein-RNA binding affinity, follow these steps:
 
