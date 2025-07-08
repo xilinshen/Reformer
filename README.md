@@ -188,5 +188,5 @@ calc_mutation_effect(ref_coverage, mut_coverage)
 ```
 
 <h2> 🖊️ Citation <a name="citation"></a></h2> 
-Unpublished
+Shen X, Hou Y, Wang X, Zhang C, Liu J, Shen H, Wang W, Yang Y, Yang M, Li Y, Zhang J, Sun Y, Chen K, Shi L, Li X. A deep learning model for characterizing protein-RNA interactions from sequences at single-base resolution. Patterns (N Y). 2025 Jan 10;6(1):101150. doi: 10.1016/j.patter.2024.101150. 
 </div>
