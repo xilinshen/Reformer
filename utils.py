@@ -12,7 +12,7 @@ import copy
 import pandas as pd
 
 def load_model(tokenizer, model_path):
-    model = Bert4Coverage(tokenizer,model_path = model_path)
+    model = Bert4Coverage(tokenizer,model_path = None)
     
     state_dict = torch.load(model_path, map_location  = "cpu")
     model.load_state_dict(state_dict, strict = False)
